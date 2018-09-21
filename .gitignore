@@ -1,5 +1,9 @@
+#Solution and build
 /Debug
-/res
+/Release
 packages.config
 pch.*
 YanushSFML.*
+
+# Project
+/res
