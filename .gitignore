@@ -1,9 +1,13 @@
-#Solution and build
+#Solution and build [Visual Studio / Eclipse]
 /Debug
 /Release
 packages.config
 pch.*
 YanushSFML.*
+/.cproject
+/.project
+/.settings
 
-# Project
+
+# Project resources
 /res
