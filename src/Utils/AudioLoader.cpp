@@ -11,6 +11,7 @@ void AudioLoader::LoadMusic(std::string filename)
 
 void AudioLoader::PlayMusic() const
 {
+	//TODO: uncomment after debugging
 	//music_->play();
 }
 

@@ -18,21 +18,4 @@ ICommand::Ptr InputHandler::Handle()
 	{
 		return std::make_unique<MoveCommand>();
 	}
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		return std::make_unique<MoveCommand>();
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	{
-		return std::make_unique<MoveCommand>();
-	}*/
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	{
-		return std::make_unique<ICommand>
-
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-	{
-		return std::make_unique<ICommand>
-	}*/
 }
