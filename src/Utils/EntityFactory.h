@@ -8,7 +8,7 @@ namespace Utils
 	class EntityFactory
 	{
 	public:
-		static Objects::Entity::Ptr GetEntity();
+		static Objects::Entity::Ptr GetEntity(Objects::EntityType type);
 	};
 }
 

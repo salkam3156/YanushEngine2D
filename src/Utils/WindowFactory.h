@@ -12,15 +12,15 @@ namespace Graphics
 			sf::ContextSettings settings{
 				settings.depthBits = 16,
 				settings.antialiasingLevel = 4,
-				settings.majorVersion = 4,
+				settings.majorVersion = 3,
 				settings.minorVersion = 3,
 			};
 
-			auto window = std::make_unique<sf::RenderWindow>(::sf::VideoMode(800, 600), title, (sf::Style::Close | sf::Style::Resize), settings);
+			auto window = std::make_unique<sf::RenderWindow>(::sf::VideoMode(600, 600), title, (sf::Style::Close | sf::Style::Resize), settings);
 			window->setFramerateLimit(120);
 			window->setVerticalSyncEnabled(true);
 			window->setKeyRepeatEnabled(true);
-			window->setMouseCursorVisible(false);
+			window->setMouseCursorVisible(true);
 
 			return window;
 		}

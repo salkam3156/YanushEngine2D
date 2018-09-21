@@ -4,7 +4,11 @@ Application::Application()
 	: active_{ true }, clock_({})
 {
 	window_ = Graphics::WindowFactory::GetWindow("Main");
-	entities_.emplace_back(Utils::EntityFactory::GetEntity());
+	entities_.emplace_back(Utils::EntityFactory::GetEntity(Objects::EntityType::PLAYER));
+	
+	musicLoader_.LoadMusic("res/at.flac");
+	musicLoader_.PlayMusic();
+	listener_.setDirection(0,0,0);
 }
 
 bool Application::IsActive() const
@@ -14,16 +18,8 @@ bool Application::IsActive() const
 
 void Application::Update()
 {
-	
-	/*sf::Shader shader;
-	if (!shader.loadFromFile("res/vertex.shader", "res/fragment.shader"))
-	{
-		std::cout << "Shader could not be loaded" << std::endl;
-	}
-	auto glVersion = glGetString(GL_VERSION);
-
-	auto shaderAvailable = sf::Shader::isAvailable();*/
-	int scale = 0;
+	bool mouseInScreen = false;
+	bool turn = false;
 
 	while (active_)
 	{
@@ -42,27 +38,36 @@ void Application::Update()
 					// adjust the viewport when the window is resized
 					glViewport(0, 0, event_.size.width, event_.size.height);
 				}
-				else if (event_.type == sf::Event::MouseWheelScrolled)
+				/*else if (event_.type == sf::Event::MouseWheelScrolled)
 				{
 					scale = event_.mouseWheelScroll.delta;
+				}*/
+				else if (event_.type == sf::Event::MouseLeft)
+				{
+					mouseInScreen = false;
+				}
+				else if (event_.type == sf::Event::MouseEntered)
+				{
+					mouseInScreen = true;
+				}
+				else if (event_.type == sf::Event::MouseMoved)
+				{
+					turn = true;
 				}
 			}
-
 			// clear the buffers
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			// draw...
-
-			// end the current frame (internally swaps the front and back buffers)
-
 			for (auto& entity : entities_)
 			{
-				entity->MoveToMousePosition(mouse_.getPosition(*window_));
-				entity->Move();
-				if (scale != 0)
+				if (mouseInScreen)
 				{
-					entity->Scale(scale);
-					scale = 0;
+					entity->Turn(sf::Mouse::getPosition(*window_));
+				}
+
+				if (auto command = inputHandler_.Handle())
+				{
+					command->Execute(*entity);
 				}
 				entity->Draw(*window_);
 			}

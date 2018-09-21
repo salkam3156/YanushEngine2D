@@ -3,5 +3,5 @@
 
 class IEntity : public sf::Drawable
 {
-	
+
 };

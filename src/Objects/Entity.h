@@ -1,6 +1,7 @@
 #pragma once
 #include "../stdafx.h"
 
+
 namespace Objects
 {
 	enum class EntityType : std::uint8_t
@@ -8,7 +9,7 @@ namespace Objects
 		PLAYER,
 		ENEMY
 	};
-
+	
 	class Entity
 	{
 	public:
@@ -17,17 +18,17 @@ namespace Objects
 
 		using Ptr = std::unique_ptr<Entity>;
 
-		Entity();
+		Entity(EntityType type);
 
 		void Move();
-		void Move(float x, float y);
-		void MoveToMousePosition(sf::Vector2i position);
+		void Turn(sf::Vector2i position);
 
 		void Scale(float delta);
 		// Inherited via Drawable
 		void Draw(sf::RenderTarget & target, sf::RenderStates states = sf::RenderStates::Default) const;
 
 	private:
+		float CalculateRotationToMouse(const sf::Vector2i& mousePosition);
 		sf::Sprite sprite_;
 		sf::Texture texture_;
 		bool scale_;
