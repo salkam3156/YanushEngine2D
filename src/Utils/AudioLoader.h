@@ -1,6 +1,7 @@
 #pragma once
-#include "../stdafx.h"
 #include <SFML/Audio.hpp>
+
+#include "../stdafx.h"
 
 class AudioLoader
 {

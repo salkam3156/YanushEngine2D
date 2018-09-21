@@ -4,7 +4,7 @@
 
 namespace Objects
 {
-	enum class EntityType : std::uint8_t
+	enum class EntityType
 	{
 		PLAYER,
 		ENEMY

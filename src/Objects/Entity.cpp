@@ -7,7 +7,7 @@
 namespace Objects
 {
 	Entity::Entity(EntityType type)
-		: sprite_({}), texture_({})
+		: sprite_(sf::Sprite()), texture_(sf::Texture())
 	{
 		float positionX = 0 + (std::rand() % (800 + 1));
 		float positionY = 0 + (std::rand() % (600 + 1));

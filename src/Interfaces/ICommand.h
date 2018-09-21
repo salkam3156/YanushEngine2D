@@ -1,6 +1,6 @@
 #pragma once
-#include "../stdafx.h"
 #include "../Objects/Entity.h"
+#include "../stdafx.h"
 
 class ICommand
 {
