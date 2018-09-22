@@ -1,5 +1,6 @@
 #pragma once
 #include "../stdafx.h"
+#include "../Utils/TextureLoader.h"
 
 class SceneDrawer
 {
@@ -12,7 +13,8 @@ private:
 
 private:
 	std::shared_ptr<sf::RenderWindow> window_;
+	TextureLoader textureLoader_;
 	sf::Sprite grassSprite_;
-	sf::Texture floorTile_;
+	std::shared_ptr<sf::Texture> floorTile_;
 	sf::Vector2i matrixDims_;
 };
