@@ -20,7 +20,8 @@ namespace Graphics
 			window->setFramerateLimit(120);
 			window->setVerticalSyncEnabled(true);
 			window->setKeyRepeatEnabled(true);
-			window->setMouseCursorVisible(false);
+			window->setMouseCursorVisible(true);
+			window->setMouseCursorGrabbed(false);
 
 			return window;
 		}

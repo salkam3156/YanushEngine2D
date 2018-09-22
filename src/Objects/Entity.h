@@ -21,14 +21,15 @@ namespace Objects
 		Entity(EntityType type);
 
 		void Move();
-		void Turn(sf::Vector2i position);
+		void Turn(sf::Vector2i position, const sf::RenderTarget& window);
 
 		void Scale(float delta);
 		// Inherited via Drawable
 		void Draw(sf::RenderTarget & target, sf::RenderStates states = sf::RenderStates::Default) const;
+		sf::Vector2f GetPosition();
 
 	private:
-		float CalculateRotationToMouse(const sf::Vector2i& mousePosition);
+		float CalculateRotationToMouse(const sf::Vector2i& mousePosition, const sf::RenderTarget& window);
 		sf::Sprite sprite_;
 		sf::Texture texture_;
 		bool scale_;

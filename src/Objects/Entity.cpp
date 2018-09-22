@@ -9,10 +9,11 @@ namespace Objects
 	Entity::Entity(EntityType type)
 		: sprite_(sf::Sprite()), texture_(sf::Texture())
 	{
+		//TODO: proper random
 		float positionX = 0 + (std::rand() % (800 + 1));
 		float positionY = 0 + (std::rand() % (600 + 1));
 
-		sprite_.setPosition(positionX, positionY);
+		sprite_.setPosition(0, 0);
 
 		texture_ = sf::Texture();
 		if (!texture_.loadFromFile("res/soljah.png"))
@@ -47,10 +48,10 @@ namespace Objects
 			movement.y += 7;
 		}
 
-		auto currPos = sprite_.getPosition();
-		currPos.x += movement.x;
+		sprite_.move(movement.x, movement.y);
+		/*currPos.x += movement.x;
 		currPos.y += movement.y;
-		sprite_.setPosition(currPos);
+		sprite_.setPosition(currPos);*/
 	}
 
 
@@ -59,21 +60,28 @@ namespace Objects
 		target.draw(sprite_, states);
 	}
 
-	float Entity::CalculateRotationToMouse(const sf::Vector2i& mousePosition)
+	sf::Vector2f Entity::GetPosition()
+	{
+		auto debugPos = sprite_.getPosition();
+		return debugPos;
+	}
+
+	float Entity::CalculateRotationToMouse(const sf::Vector2i& mousePosition, const sf::RenderTarget& window)
 	{
 		sf::Vector2f curPos = sprite_.getPosition();
+		auto winSize = window.getSize();
 
-		float dx = curPos.x - mousePosition.x;
-		float dy = curPos.y - mousePosition.y;
+		float dx = winSize.x/(float)2 - mousePosition.x ;
+		float dy = winSize.y/(float)2 - mousePosition.y;
 
 		float rotation = ((atan2f(dy, dx)) * 180 / M_PI) + 180;
 
-		return rotation ;
+		return rotation;
 	}
 
-	void Entity::Turn(sf::Vector2i position)
+	void Entity::Turn(sf::Vector2i position, const sf::RenderTarget& window)
 	{
-		sprite_.setRotation(CalculateRotationToMouse(position));
+		sprite_.setRotation(CalculateRotationToMouse(position, window));
 	}
 	void Entity::Scale(float delta)
 	{

@@ -23,5 +23,6 @@ private:
 	sf::Listener listener_;
 	InputHandler inputHandler_;
 	std::unique_ptr<SceneDrawer> sceneDrawer_;
+	sf::View view_;
 
 };

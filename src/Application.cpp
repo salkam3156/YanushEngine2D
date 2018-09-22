@@ -6,12 +6,10 @@ Application::Application()
 	window_ = Graphics::WindowFactory::GetWindow("Main");
 	entities_.emplace_back(Utils::EntityFactory::GetEntity(Objects::EntityType::PLAYER));
 	
-	musicLoader_.LoadMusic("res/at.flac");
+	musicLoader_.LoadMusic("");
 	musicLoader_.PlayMusic();
 	listener_.setDirection(0,0,0);
 	sceneDrawer_ = std::make_unique<SceneDrawer>(window_);
-
-	//sceneDrawer_.DrawGround(std::make_shared<sf::Window>(window_));
 }
 
 bool Application::IsActive() const
@@ -59,9 +57,12 @@ void Application::Update()
 
 			for (auto& entity : entities_)
 			{
+				view_.move(entity->GetPosition() - view_.getCenter());
+				//view_.setCenter(entity->GetPosition());
+				window_->setView(view_);
 				if (mouseInScreen)
 				{
-					entity->Turn(sf::Mouse::getPosition(*window_));
+					entity->Turn(sf::Mouse::getPosition(*window_), *window_);
 				}
 
 				if (auto command = inputHandler_.Handle())
@@ -70,6 +71,7 @@ void Application::Update()
 				}
 				sceneDrawer_->DrawGround();
 				entity->Draw(*window_);
+				
 			}
 			window_->display();
 			clock_.restart();
