@@ -4,8 +4,8 @@
 class TextureLoader
 {
 public:
-
-	static sf::Texture GetTexture(std::string textureName);
+	std::shared_ptr<sf::Texture> GetTexture(std::string textureName);
 
 private:
+	std::map<std::string/*texture path*/, std::shared_ptr<sf::Texture>> textureMap_;
 };
