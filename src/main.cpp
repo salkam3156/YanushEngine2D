@@ -8,5 +8,6 @@ int main()
 	{
 		app.Update();
 	}
+
 	return 0;
 }

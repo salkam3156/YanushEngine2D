@@ -9,6 +9,9 @@ Application::Application()
 	musicLoader_.LoadMusic("res/at.flac");
 	musicLoader_.PlayMusic();
 	listener_.setDirection(0,0,0);
+	sceneDrawer_ = std::make_unique<SceneDrawer>(window_);
+
+	//sceneDrawer_.DrawGround(std::make_shared<sf::Window>(window_));
 }
 
 bool Application::IsActive() const
@@ -38,10 +41,6 @@ void Application::Update()
 					// adjust the viewport when the window is resized
 					glViewport(0, 0, event_.size.width, event_.size.height);
 				}
-				/*else if (event_.type == sf::Event::MouseWheelScrolled)
-				{
-					scale = event_.mouseWheelScroll.delta;
-				}*/
 				else if (event_.type == sf::Event::MouseLeft)
 				{
 					mouseInScreen = false;
@@ -69,6 +68,7 @@ void Application::Update()
 				{
 					command->Execute(*entity);
 				}
+				sceneDrawer_->DrawGround();
 				entity->Draw(*window_);
 			}
 			window_->display();

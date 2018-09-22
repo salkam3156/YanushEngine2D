@@ -6,8 +6,8 @@ namespace Graphics
 	class WindowFactory
 	{
 	public:
-		using WindowPtr = std::unique_ptr<sf::RenderWindow>;
-		static WindowPtr GetWindow(std::string title)
+		//using WindowPtr = std::unique_ptr<sf::RenderWindow>;
+		static std::shared_ptr<sf::RenderWindow> GetWindow(std::string title)
 		{
 			sf::ContextSettings settings{
 				settings.depthBits = 16,
@@ -16,7 +16,7 @@ namespace Graphics
 				settings.minorVersion = 3,
 			};
 
-			auto window = std::make_unique<sf::RenderWindow>(::sf::VideoMode(600, 600), title, (sf::Style::Close | sf::Style::Resize), settings);
+			auto window = std::make_shared<sf::RenderWindow>(::sf::VideoMode(600, 600), title, (sf::Style::Close | sf::Style::Resize), settings);
 			window->setFramerateLimit(120);
 			window->setVerticalSyncEnabled(true);
 			window->setKeyRepeatEnabled(true);
