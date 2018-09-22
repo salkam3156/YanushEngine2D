@@ -21,7 +21,7 @@ namespace Objects
 		Entity(EntityType type);
 
 		void Move();
-		void Turn(sf::Vector2i position, const sf::RenderTarget& window);
+		void Turn(sf::Vector2i position);
 
 		void Scale(float delta);
 		// Inherited via Drawable
@@ -29,7 +29,7 @@ namespace Objects
 		sf::Vector2f GetPosition();
 
 	private:
-		float CalculateRotationToMouse(const sf::Vector2i& mousePosition, const sf::RenderTarget& window);
+		float CalculateRotationToMouse(const sf::Vector2i& mousePosition);
 		sf::Sprite sprite_;
 		sf::Texture texture_;
 		bool scale_;

@@ -62,7 +62,10 @@ void Application::Update()
 				window_->setView(view_);
 				if (mouseInScreen)
 				{
-					entity->Turn(sf::Mouse::getPosition(*window_), *window_);
+					auto mousePos = sf::Mouse::getPosition(*window_);
+					auto windowCenterCoords = sf::Vector2i{ (int)window_->getSize().x / (int)2 , (int)window_->getSize().y / (int)2 };
+					auto mousePosFromCenter = mousePos - windowCenterCoords;
+					entity->Turn(mousePosFromCenter);
 				}
 
 				if (auto command = inputHandler_.Handle())

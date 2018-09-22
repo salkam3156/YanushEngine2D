@@ -66,22 +66,17 @@ namespace Objects
 		return debugPos;
 	}
 
-	float Entity::CalculateRotationToMouse(const sf::Vector2i& mousePosition, const sf::RenderTarget& window)
+	float Entity::CalculateRotationToMouse(const sf::Vector2i& mousePosition)
 	{
-		sf::Vector2f curPos = sprite_.getPosition();
-		auto winSize = window.getSize();
 
-		float dx = winSize.x/(float)2 - mousePosition.x ;
-		float dy = winSize.y/(float)2 - mousePosition.y;
-
-		float rotation = ((atan2f(dy, dx)) * 180 / M_PI) + 180;
+		float rotation = -((atan2f(mousePosition.x, mousePosition.y)) * 180 / M_PI) + 90;
 
 		return rotation;
 	}
 
-	void Entity::Turn(sf::Vector2i position, const sf::RenderTarget& window)
+	void Entity::Turn(sf::Vector2i position)
 	{
-		sprite_.setRotation(CalculateRotationToMouse(position, window));
+		sprite_.setRotation(CalculateRotationToMouse(position));
 	}
 	void Entity::Scale(float delta)
 	{
