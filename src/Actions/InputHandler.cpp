@@ -6,16 +6,20 @@ ICommand::Ptr InputHandler::Handle()
 	{
 		return std::make_unique<MoveCommand>();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		return std::make_unique<MoveCommand>();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		return std::make_unique<MoveCommand>();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		return std::make_unique<MoveCommand>();
+	}
+	else
+	{
+		return nullptr;
 	}
 }

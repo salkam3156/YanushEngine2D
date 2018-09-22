@@ -4,7 +4,6 @@
 #include "Utils/AudioLoader.h"
 #include "Interfaces/ICommand.h"
 #include "Actions/InputHandler.h"
-#include "stdafx.h"
 
 class Application
 {

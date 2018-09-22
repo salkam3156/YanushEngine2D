@@ -1,8 +1,6 @@
 #pragma once
 #include <SFML/Audio.hpp>
 
-#include "../stdafx.h"
-
 class AudioLoader
 {
 	using MusicPtr = std::unique_ptr<sf::Music>;

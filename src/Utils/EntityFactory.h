@@ -1,7 +1,4 @@
 #pragma once
-
-#pragma once
-#include "../stdafx.h"
 #include "../Objects/Entity.h"
 
 namespace Utils
