@@ -22,6 +22,7 @@ void Application::Update()
 {
 	bool mouseInScreen = false;
 	bool turn = false;
+	auto testEnt = Utils::EntityFactory::GetEntity(IEntity::EntityType::PLAYER);
 
 	while (active_)
 	{
@@ -72,7 +73,9 @@ void Application::Update()
 				sceneDrawer_->DrawGround();
 				window_->setView(view_);
 				entity->Draw(*window_);
+
 			}
+			testEnt->Draw(*window_);
 			window_->display();
 			clock_.restart();
 		}

@@ -12,11 +12,13 @@ SceneDrawer::SceneDrawer(std::shared_ptr<sf::RenderWindow> window)
 
 void SceneDrawer::DrawGround()
 {
+	window_->setView(window_->getDefaultView());
+
 	for (int i = 0; i < matrixDims_.x; i++)
 	{
 		for (int j = 0; j < matrixDims_.y; j++)
 		{
-			grassSprite_.setPosition(i * grassSprite_.getTexture()->getSize().x, j * grassSprite_.getTexture()->getSize().y);
+			grassSprite_.setPosition(i * grassSprite_.getTexture()->getSize().x , j * grassSprite_.getTexture()->getSize().y);
 			window_->draw(grassSprite_);
 		}
 	}
