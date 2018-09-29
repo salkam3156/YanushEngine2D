@@ -4,7 +4,7 @@ Application::Application()
 	: active_{ true }, clock_({})
 {
 	window_ = Graphics::WindowFactory::GetWindow("Main");
-	entities_.emplace_back(Utils::EntityFactory::GetEntity(Objects::EntityType::PLAYER));
+	entities_.emplace_back(Utils::EntityFactory::GetEntity(IEntity::EntityType::PLAYER));
 	
 	musicLoader_.LoadMusic("");
 	musicLoader_.PlayMusic();
@@ -32,7 +32,6 @@ void Application::Update()
 			{
 				if (event_.type == sf::Event::Closed)
 				{
-					// end the program
 					active_ = false;
 				}
 				else if (event_.type == sf::Event::Resized)
