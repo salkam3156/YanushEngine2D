@@ -21,7 +21,7 @@ namespace Objects
 		Entity(EntityType type);
 
 		void Move();
-		void Turn(sf::Vector2i position);
+		float Turn(sf::Vector2i position);
 
 		void Scale(float delta);
 		// Inherited via Drawable

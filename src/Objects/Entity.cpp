@@ -16,12 +16,12 @@ namespace Objects
 		sprite_.setPosition(0, 0);
 
 		texture_ = sf::Texture();
-		if (!texture_.loadFromFile("res/soljah.png"))
+		if (!texture_.loadFromFile("res/soldierGun.png"))
 		{
 			std::cerr << "Failed to load texture";
 		}
 		sprite_.setTexture(texture_);
-		sprite_.scale(0.5, 0.5);
+		sprite_.scale(0.3, 0.3);
 
 		auto bounds = sprite_.getLocalBounds();
 		sprite_.setOrigin(bounds.left + bounds.width / 2, bounds.top + bounds.height / 2);
@@ -68,16 +68,19 @@ namespace Objects
 
 	float Entity::CalculateRotationToMouse(const sf::Vector2i& mousePosition)
 	{
-
-		float rotation = -((atan2f(mousePosition.x, mousePosition.y)) * 180 / M_PI) + 90;
+		float rotation = -((atan2f(mousePosition.x, mousePosition.y)) * 180 / M_PI) + 180;
 
 		return rotation;
 	}
 
-	void Entity::Turn(sf::Vector2i position)
+	float Entity::Turn(sf::Vector2i position)
 	{
-		sprite_.setRotation(CalculateRotationToMouse(position));
+		auto turnRotation = CalculateRotationToMouse(position);
+		sprite_.setRotation(turnRotation);
+
+		return turnRotation;
 	}
+
 	void Entity::Scale(float delta)
 	{
 		sprite_.scale(1 + delta/10, 1 + delta / 10);
