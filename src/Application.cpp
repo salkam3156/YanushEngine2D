@@ -10,6 +10,7 @@ Application::Application()
 	musicLoader_.PlayMusic();
 	listener_.setDirection(0,0,0);
 	sceneDrawer_ = std::make_unique<SceneDrawer>(window_);
+	view_.reset({ 0, 0, (float)window_->getSize().x, (float)window_->getSize().y });
 }
 
 bool Application::IsActive() const
@@ -54,12 +55,9 @@ void Application::Update()
 			}
 			// clear the buffers
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 			for (auto& entity : entities_)
 			{
 				view_.move(entity->GetPosition() - view_.getCenter());
-				//view_.setCenter(entity->GetPosition());
-				window_->setView(view_);
 				if (mouseInScreen)
 				{
 					auto mousePos = sf::Mouse::getPosition(*window_);
@@ -73,8 +71,8 @@ void Application::Update()
 					command->Execute(*entity);
 				}
 				sceneDrawer_->DrawGround();
+				window_->setView(view_);
 				entity->Draw(*window_);
-				
 			}
 			window_->display();
 			clock_.restart();
