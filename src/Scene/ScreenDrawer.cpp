@@ -5,7 +5,6 @@ SceneDrawer::SceneDrawer(std::shared_ptr<sf::RenderWindow> window)
 	:window_(window), grassSprite_({})
 {
 	floorTile_ = textureLoader_.GetTexture("res/grass.png");
-	floorTile_->generateMipmap();
 	floorTile_->setRepeated(true);
 	grassSprite_.setTexture(*floorTile_);
 	matrixDims_ = CalculateTileMatrixDims(*floorTile_);
