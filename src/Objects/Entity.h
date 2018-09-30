@@ -11,7 +11,7 @@ namespace Objects
 	{
 	public:
 		//TODO: flyweight pattern for texture reusal
-		//Entity(const Entity& rhs) = delete;
+		Entity(const Entity& rhs) = delete;
 
 		using Ptr = std::unique_ptr<Entity>;
 

@@ -21,7 +21,8 @@ namespace Objects
 			std::cerr << "Failed to load texture";
 		}
 		sprite_.setTexture(texture_);
-		sprite_.scale(0.3, 0.3);
+		//TODO: scaling calculations for generic entities relative to tilesize ? 
+		sprite_.scale(0.2, 0.2);
 
 		auto bounds = sprite_.getLocalBounds();
 		sprite_.setOrigin(bounds.left + bounds.width / 2, bounds.top + bounds.height / 2);
